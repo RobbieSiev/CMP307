@@ -28,58 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            loginButton = new Button();
-            passwordInput = new TextBox();
-            usernameInput = new TextBox();
-            SuspendLayout();
-            // 
-            // loginButton
-            // 
-            loginButton.Location = new Point(216, 295);
-            loginButton.Name = "loginButton";
-            loginButton.Size = new Size(150, 46);
-            loginButton.TabIndex = 0;
-            loginButton.Text = "Login";
-            loginButton.UseVisualStyleBackColor = true;
-            loginButton.Click += loginButton_Click;
-            // 
-            // passwordInput
-            // 
-            passwordInput.Location = new Point(188, 193);
-            passwordInput.Name = "passwordInput";
-            passwordInput.PasswordChar = '*';
-            passwordInput.PlaceholderText = "Password";
-            passwordInput.Size = new Size(200, 39);
-            passwordInput.TabIndex = 1;
-            passwordInput.UseSystemPasswordChar = true;
-            // 
-            // usernameInput
-            // 
-            usernameInput.Location = new Point(188, 117);
-            usernameInput.Name = "usernameInput";
-            usernameInput.PlaceholderText = "Username";
-            usernameInput.Size = new Size(200, 39);
-            usernameInput.TabIndex = 2;
-            usernameInput.TextChanged += textBox2_TextChanged;
-            // 
-            // Form1
-            // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(usernameInput);
-            Controls.Add(passwordInput);
-            Controls.Add(loginButton);
-            Name = "Form1";
-            Text = "Form1";
-            ResumeLayout(false);
-            PerformLayout();
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "Form1";
         }
 
         #endregion
-
-        private Button loginButton;
-        private TextBox passwordInput;
-        private TextBox usernameInput;
     }
 }

@@ -6,20 +6,5 @@ namespace Asset_Tracking
         {
             InitializeComponent();
         }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void loginButton_Click(object sender, EventArgs e)
-        {
-            if (usernameInput.Text != "" && passwordInput.Text != "")
-            {
-                // try to log user in
-
-
-            }
-        }
     }
 }

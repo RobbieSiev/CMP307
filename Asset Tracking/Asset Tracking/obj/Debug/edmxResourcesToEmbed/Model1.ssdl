@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="asset">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="16" Nullable="false" />
+    <Property Name="type" Type="nchar" MaxLength="10" />
+    <Property Name="purchaseDate" Type="date" />
+    <Property Name="notes" Type="nchar" MaxLength="255" />
+    <Property Name="eid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="eid" />
+    </Key>
+    <Property Name="fname" Type="nchar" MaxLength="32" Nullable="false" />
+    <Property Name="lname" Type="nchar" MaxLength="32" Nullable="false" />
+    <Property Name="email" Type="nchar" MaxLength="64" Nullable="false" />
+    <Property Name="eid" Type="int" Nullable="false" />
+    <Property Name="dept" Type="varchar" MaxLength="16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="hardware">
+    <Key>
+      <PropertyRef Name="deviceId" />
+    </Key>
+    <Property Name="systemName" Type="nchar" MaxLength="64" Nullable="false" />
+    <Property Name="model" Type="nchar" MaxLength="64" Nullable="false" />
+    <Property Name="manufacturer" Type="nchar" MaxLength="64" Nullable="false" />
+    <Property Name="type" Type="nchar" MaxLength="32" Nullable="false" />
+    <Property Name="ip" Type="nchar" MaxLength="16" Nullable="false" />
+    <Property Name="deviceId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_asset_employee">
+    <End Role="employee" Type="Self.employee" Multiplicity="1" />
+    <End Role="asset" Type="Self.asset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="eid" />
+      </Principal>
+      <Dependent Role="asset">
+        <PropertyRef Name="eid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbModelStoreContainer">
+    <EntitySet Name="asset" EntityType="Self.asset" Schema="CMP307" store:Type="Tables" />
+    <EntitySet Name="employee" EntityType="Self.employee" Schema="CMP307" store:Type="Tables" />
+    <EntitySet Name="hardware" EntityType="Self.hardware" Schema="CMP307" store:Type="Tables" />
+    <AssociationSet Name="FK_asset_employee" Association="Self.FK_asset_employee">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="asset" EntitySet="asset" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

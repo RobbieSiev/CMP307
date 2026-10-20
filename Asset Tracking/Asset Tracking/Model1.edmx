@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="asset">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="16" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="10" />
+          <Property Name="purchaseDate" Type="date" />
+          <Property Name="notes" Type="nchar" MaxLength="255" />
+          <Property Name="eid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="fname" Type="nchar" MaxLength="32" Nullable="false" />
+          <Property Name="lname" Type="nchar" MaxLength="32" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="eid" Type="int" Nullable="false" />
+          <Property Name="dept" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hardware">
+          <Key>
+            <PropertyRef Name="deviceId" />
+          </Key>
+          <Property Name="systemName" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="model" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="manufacturer" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="32" Nullable="false" />
+          <Property Name="ip" Type="nchar" MaxLength="16" Nullable="false" />
+          <Property Name="deviceId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_asset_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="asset" Type="Self.asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="eid" />
+            </Principal>
+            <Dependent Role="asset">
+              <PropertyRef Name="eid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbModelStoreContainer">
+          <EntitySet Name="asset" EntityType="Self.asset" Schema="CMP307" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="CMP307" store:Type="Tables" />
+          <EntitySet Name="hardware" EntityType="Self.hardware" Schema="CMP307" store:Type="Tables" />
+          <AssociationSet Name="FK_asset_employee" Association="Self.FK_asset_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="asset" EntitySet="asset" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="assets" EntityType="dbModel.asset" />
+          <EntitySet Name="employees" EntityType="dbModel.employee" />
+          <EntitySet Name="hardwares" EntityType="dbModel.hardware" />
+          <AssociationSet Name="FK_asset_employee" Association="dbModel.FK_asset_employee">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="asset" EntitySet="assets" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="asset">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="purchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="notes" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="eid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="dbModel.FK_asset_employee" FromRole="asset" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="fname" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="lname" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="eid" Type="Int32" Nullable="false" />
+          <Property Name="dept" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="assets" Relationship="dbModel.FK_asset_employee" FromRole="employee" ToRole="asset" />
+        </EntityType>
+        <EntityType Name="hardware">
+          <Key>
+            <PropertyRef Name="deviceId" />
+          </Key>
+          <Property Name="systemName" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="model" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="manufacturer" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="ip" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="deviceId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_asset_employee">
+          <End Type="dbModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="dbModel.asset" Role="asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="eid" />
+            </Principal>
+            <Dependent Role="asset">
+              <PropertyRef Name="eid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbModelStoreContainer" CdmEntityContainer="dbEntities">
+        <EntitySetMapping Name="assets">
+            <EntityTypeMapping TypeName="dbModel.asset">
+              <MappingFragment StoreEntitySet="asset">
+                <ScalarProperty Name="eid" ColumnName="eid" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="purchaseDate" ColumnName="purchaseDate" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="dbModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="dept" ColumnName="dept" />
+                <ScalarProperty Name="eid" ColumnName="eid" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hardwares">
+            <EntityTypeMapping TypeName="dbModel.hardware">
+              <MappingFragment StoreEntitySet="hardware">
+                <ScalarProperty Name="deviceId" ColumnName="deviceId" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="systemName" ColumnName="systemName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
