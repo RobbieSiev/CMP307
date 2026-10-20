@@ -7,7 +7,6 @@
           <ScalarProperty Name="eid" ColumnName="eid" />
           <ScalarProperty Name="notes" ColumnName="notes" />
           <ScalarProperty Name="purchaseDate" ColumnName="purchaseDate" />
-          <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>

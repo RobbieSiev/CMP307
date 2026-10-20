@@ -15,13 +15,8 @@ namespace Asset_Tracking
     
     public partial class dbEntities : DbContext
     {
-        public dbEntities()
-            : base("name=dbEntities")
-        {
-        }
-
-        public dbEntities(string connectionString)
-            : base(connectionString)
+        public dbEntities(string conn)
+            : base(conn)
         {
         }
     

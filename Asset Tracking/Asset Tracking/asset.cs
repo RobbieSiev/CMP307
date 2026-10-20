@@ -16,7 +16,6 @@ namespace Asset_Tracking
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string type { get; set; }
         public Nullable<System.DateTime> purchaseDate { get; set; }
         public string notes { get; set; }
         public int eid { get; set; }

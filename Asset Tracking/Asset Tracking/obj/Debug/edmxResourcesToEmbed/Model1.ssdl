@@ -4,11 +4,10 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="name" Type="nchar" MaxLength="16" Nullable="false" />
-    <Property Name="type" Type="nchar" MaxLength="10" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="16" Nullable="false" />
     <Property Name="purchaseDate" Type="date" />
-    <Property Name="notes" Type="nchar" MaxLength="255" />
+    <Property Name="notes" Type="varchar" MaxLength="255" />
     <Property Name="eid" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="employee">
