@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Asset Tracking/Asset Tracking/.vs/Asset Tracking/CopilotIndices/17.14.1722.21010/CodeChunks.db
+/Asset Tracking/Asset Tracking/.vs/Asset Tracking/CopilotIndices/17.14.1722.21010/SemanticSymbols.db
+/Asset Tracking/Asset Tracking/.vs/Asset Tracking/FileContentIndex/20073062-368e-4948-94eb-2880855d7708.vsidx
+/Asset Tracking/Asset Tracking/.vs/Asset Tracking/FileContentIndex/9f9035f5-2b3b-4fdd-bc3a-ecf8254e9347.vsidx
+/Asset Tracking/Asset Tracking/.vs/Asset Tracking/FileContentIndex/7fce32a5-efde-4607-a119-576134301bf8.vsidx

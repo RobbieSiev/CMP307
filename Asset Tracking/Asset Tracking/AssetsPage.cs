@@ -11,6 +11,16 @@ namespace Asset_Tracking
         {
             InitializeComponent();
             FormClosed += AssetsPage_FormClosed;
+
+            // load employee names into the combo box
+            var employees = DatabaseConnection.CreateContext().employees
+                .Select(e => e)
+                .ToList();
+            foreach (var employee in employees)
+            {
+                employeePicker.Items.Add(employee.eid.ToString() +"\t"+ employee.fname.Trim()+ " " + employee.lname.Trim());
+            }   
+
         }
 
         private void AssetsPage_FormClosed(object sender, FormClosedEventArgs e)
@@ -48,6 +58,10 @@ namespace Asset_Tracking
 
             try
             {
+                // disable add button to prevent spam
+                addAssetButton.Enabled = false;
+
+
                 using (var db = DatabaseConnection.CreateContext())
                 {
                     var newAsset = new asset
@@ -64,6 +78,11 @@ namespace Asset_Tracking
                 }
 
                 MessageBox.Show("Asset added successfully!");
+
+                // clear input fields
+                assetNameInput.Clear();
+                purchaseDatePicker.Value = DateTime.Now;
+                notesBox.Clear();
             }
             catch (DbUpdateException dbException)
             {
@@ -81,10 +100,18 @@ namespace Asset_Tracking
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            // re-enable add button after operation
+            finally
+            {
+                // ew, finally
+                addAssetButton.Enabled = true;
+            }
         }
 
         private static string GetFullExceptionMessage(Exception exception)
         {
+            // get full exception message including inner exceptions
+            // also sql errors as they get hidden
             var messages = new System.Collections.Generic.List<string>();
 
             while (exception != null)
@@ -96,6 +123,20 @@ namespace Asset_Tracking
             return string.Join(
                 Environment.NewLine + Environment.NewLine,
                 messages);
+        }
+
+        private void purchaseDatePicker_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void assetNameInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddAsset_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

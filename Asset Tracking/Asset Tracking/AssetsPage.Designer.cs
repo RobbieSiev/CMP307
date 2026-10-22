@@ -30,6 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.AddAsset = new System.Windows.Forms.TabPage();
+            this.employeePickerLabel = new System.Windows.Forms.Label();
+            this.employeePicker = new System.Windows.Forms.ListBox();
+            this.notesBoxLabel = new System.Windows.Forms.Label();
             this.notesBox = new System.Windows.Forms.TextBox();
             this.purchaseDatePicker = new System.Windows.Forms.DateTimePicker();
             this.purchaseDateLabel = new System.Windows.Forms.Label();
@@ -45,76 +48,118 @@
             // 
             this.tabControl1.Controls.Add(this.AddAsset);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 13);
+            this.tabControl1.Location = new System.Drawing.Point(6, 7);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 425);
+            this.tabControl1.Size = new System.Drawing.Size(562, 386);
             this.tabControl1.TabIndex = 0;
             // 
             // AddAsset
             // 
+            this.AddAsset.Controls.Add(this.employeePickerLabel);
+            this.AddAsset.Controls.Add(this.employeePicker);
+            this.AddAsset.Controls.Add(this.notesBoxLabel);
             this.AddAsset.Controls.Add(this.notesBox);
             this.AddAsset.Controls.Add(this.purchaseDatePicker);
             this.AddAsset.Controls.Add(this.purchaseDateLabel);
             this.AddAsset.Controls.Add(this.nameOfItemLabel);
             this.AddAsset.Controls.Add(this.assetNameInput);
             this.AddAsset.Controls.Add(this.addAssetButton);
-            this.AddAsset.Location = new System.Drawing.Point(8, 39);
+            this.AddAsset.Location = new System.Drawing.Point(4, 22);
+            this.AddAsset.Margin = new System.Windows.Forms.Padding(2);
             this.AddAsset.Name = "AddAsset";
-            this.AddAsset.Padding = new System.Windows.Forms.Padding(3);
-            this.AddAsset.Size = new System.Drawing.Size(760, 378);
+            this.AddAsset.Padding = new System.Windows.Forms.Padding(2);
+            this.AddAsset.Size = new System.Drawing.Size(554, 360);
             this.AddAsset.TabIndex = 0;
             this.AddAsset.Text = "Add Asset";
             this.AddAsset.UseVisualStyleBackColor = true;
+            this.AddAsset.Click += new System.EventHandler(this.AddAsset_Click);
+            // 
+            // employeePickerLabel
+            // 
+            this.employeePickerLabel.AutoSize = true;
+            this.employeePickerLabel.Location = new System.Drawing.Point(212, 33);
+            this.employeePickerLabel.Name = "employeePickerLabel";
+            this.employeePickerLabel.Size = new System.Drawing.Size(138, 13);
+            this.employeePickerLabel.TabIndex = 11;
+            this.employeePickerLabel.Text = "Employee assigned to asset";
+            // 
+            // employeePicker
+            // 
+            this.employeePicker.FormattingEnabled = true;
+            this.employeePicker.Location = new System.Drawing.Point(215, 49);
+            this.employeePicker.Name = "employeePicker";
+            this.employeePicker.Size = new System.Drawing.Size(128, 56);
+            this.employeePicker.TabIndex = 10;
+            // 
+            // notesBoxLabel
+            // 
+            this.notesBoxLabel.AutoSize = true;
+            this.notesBoxLabel.Location = new System.Drawing.Point(212, 218);
+            this.notesBoxLabel.Name = "notesBoxLabel";
+            this.notesBoxLabel.Size = new System.Drawing.Size(64, 13);
+            this.notesBoxLabel.TabIndex = 9;
+            this.notesBoxLabel.Text = "Asset Notes";
             // 
             // notesBox
             // 
-            this.notesBox.Location = new System.Drawing.Point(219, 237);
+            this.notesBox.Location = new System.Drawing.Point(215, 233);
+            this.notesBox.Margin = new System.Windows.Forms.Padding(2);
             this.notesBox.Multiline = true;
             this.notesBox.Name = "notesBox";
-            this.notesBox.Size = new System.Drawing.Size(252, 85);
+            this.notesBox.Size = new System.Drawing.Size(128, 46);
             this.notesBox.TabIndex = 8;
             // 
             // purchaseDatePicker
             // 
+            this.purchaseDatePicker.CalendarForeColor = System.Drawing.Color.Black;
+            this.purchaseDatePicker.CalendarTitleForeColor = System.Drawing.Color.Black;
             this.purchaseDatePicker.CustomFormat = "dd/MM/yyyy";
             this.purchaseDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.purchaseDatePicker.Location = new System.Drawing.Point(229, 150);
+            this.purchaseDatePicker.Location = new System.Drawing.Point(215, 181);
+            this.purchaseDatePicker.Margin = new System.Windows.Forms.Padding(2);
             this.purchaseDatePicker.Name = "purchaseDatePicker";
-            this.purchaseDatePicker.Size = new System.Drawing.Size(242, 31);
+            this.purchaseDatePicker.Size = new System.Drawing.Size(128, 20);
             this.purchaseDatePicker.TabIndex = 7;
             this.purchaseDatePicker.Value = new System.DateTime(2026, 10, 20, 0, 0, 0, 0);
+            this.purchaseDatePicker.ValueChanged += new System.EventHandler(this.purchaseDatePicker_ValueChanged);
             // 
             // purchaseDateLabel
             // 
             this.purchaseDateLabel.AutoSize = true;
-            this.purchaseDateLabel.Location = new System.Drawing.Point(226, 109);
+            this.purchaseDateLabel.Location = new System.Drawing.Point(212, 166);
+            this.purchaseDateLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.purchaseDateLabel.Name = "purchaseDateLabel";
-            this.purchaseDateLabel.Size = new System.Drawing.Size(148, 25);
+            this.purchaseDateLabel.Size = new System.Drawing.Size(107, 13);
             this.purchaseDateLabel.TabIndex = 6;
-            this.purchaseDateLabel.Text = "PurchaseDate";
+            this.purchaseDateLabel.Text = "Asset Purchase Date";
             // 
             // nameOfItemLabel
             // 
             this.nameOfItemLabel.AutoSize = true;
-            this.nameOfItemLabel.Location = new System.Drawing.Point(229, 37);
+            this.nameOfItemLabel.Location = new System.Drawing.Point(212, 117);
+            this.nameOfItemLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.nameOfItemLabel.Name = "nameOfItemLabel";
-            this.nameOfItemLabel.Size = new System.Drawing.Size(138, 25);
+            this.nameOfItemLabel.Size = new System.Drawing.Size(76, 13);
             this.nameOfItemLabel.TabIndex = 2;
-            this.nameOfItemLabel.Text = "Name of item";
+            this.nameOfItemLabel.Text = "Name of Asset";
             // 
             // assetNameInput
             // 
-            this.assetNameInput.Location = new System.Drawing.Point(229, 65);
+            this.assetNameInput.Location = new System.Drawing.Point(215, 132);
+            this.assetNameInput.Margin = new System.Windows.Forms.Padding(2);
             this.assetNameInput.Name = "assetNameInput";
-            this.assetNameInput.Size = new System.Drawing.Size(242, 31);
+            this.assetNameInput.Size = new System.Drawing.Size(128, 20);
             this.assetNameInput.TabIndex = 1;
+            this.assetNameInput.TextChanged += new System.EventHandler(this.assetNameInput_TextChanged);
             // 
             // addAssetButton
             // 
-            this.addAssetButton.Location = new System.Drawing.Point(275, 328);
+            this.addAssetButton.Location = new System.Drawing.Point(251, 296);
+            this.addAssetButton.Margin = new System.Windows.Forms.Padding(2);
             this.addAssetButton.Name = "addAssetButton";
-            this.addAssetButton.Size = new System.Drawing.Size(99, 44);
+            this.addAssetButton.Size = new System.Drawing.Size(50, 23);
             this.addAssetButton.TabIndex = 0;
             this.addAssetButton.Text = "Add";
             this.addAssetButton.UseVisualStyleBackColor = true;
@@ -122,20 +167,22 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(8, 39);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(760, 378);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Size = new System.Drawing.Size(554, 360);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // AssetsPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(570, 404);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AssetsPage";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
@@ -156,5 +203,8 @@
         private System.Windows.Forms.DateTimePicker purchaseDatePicker;
         private System.Windows.Forms.Label purchaseDateLabel;
         private System.Windows.Forms.TextBox notesBox;
+        private System.Windows.Forms.Label notesBoxLabel;
+        private System.Windows.Forms.ListBox employeePicker;
+        private System.Windows.Forms.Label employeePickerLabel;
     }
 }

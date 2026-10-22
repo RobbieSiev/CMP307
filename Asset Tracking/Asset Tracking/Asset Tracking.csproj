@@ -63,7 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asset Tracking\Asset Tracking\DatabaseConnection.cs" />
+    <Compile Include="DatabaseConnection.cs" />
     <Compile Include="asset.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -137,6 +137,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
