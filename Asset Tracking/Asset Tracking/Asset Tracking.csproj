@@ -76,6 +76,12 @@
     <Compile Include="AssetsPage.Designer.cs">
       <DependentUpon>AssetsPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeePage.Designer.cs">
+      <DependentUpon>EmployeePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="hardware.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -95,10 +101,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AssetsPage.resx">
       <DependentUpon>AssetsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeePage.resx">
+      <DependentUpon>EmployeePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>

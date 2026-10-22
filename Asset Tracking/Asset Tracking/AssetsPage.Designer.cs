@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.AddAsset = new System.Windows.Forms.TabPage();
+            this.dateCheckbox = new System.Windows.Forms.CheckBox();
             this.employeePickerLabel = new System.Windows.Forms.Label();
             this.employeePicker = new System.Windows.Forms.ListBox();
             this.notesBoxLabel = new System.Windows.Forms.Label();
@@ -39,24 +40,29 @@
             this.nameOfItemLabel = new System.Windows.Forms.Label();
             this.assetNameInput = new System.Windows.Forms.TextBox();
             this.addAssetButton = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.displayAssets = new System.Windows.Forms.TabPage();
+            this.assetTable = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.AddAsset.SuspendLayout();
+            this.displayAssets.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.AddAsset);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.displayAssets);
             this.tabControl1.Location = new System.Drawing.Point(6, 7);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(562, 386);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.Click += new System.EventHandler(this.addAssetTab_Click);
             // 
             // AddAsset
             // 
+            this.AddAsset.Controls.Add(this.dateCheckbox);
             this.AddAsset.Controls.Add(this.employeePickerLabel);
             this.AddAsset.Controls.Add(this.employeePicker);
             this.AddAsset.Controls.Add(this.notesBoxLabel);
@@ -74,7 +80,16 @@
             this.AddAsset.TabIndex = 0;
             this.AddAsset.Text = "Add Asset";
             this.AddAsset.UseVisualStyleBackColor = true;
-            this.AddAsset.Click += new System.EventHandler(this.AddAsset_Click);
+            // 
+            // dateCheckbox
+            // 
+            this.dateCheckbox.AutoSize = true;
+            this.dateCheckbox.Location = new System.Drawing.Point(348, 181);
+            this.dateCheckbox.Name = "dateCheckbox";
+            this.dateCheckbox.Size = new System.Drawing.Size(15, 14);
+            this.dateCheckbox.TabIndex = 12;
+            this.dateCheckbox.UseVisualStyleBackColor = true;
+            this.dateCheckbox.CheckedChanged += new System.EventHandler(this.dateCheckbox_CheckedChanged);
             // 
             // employeePickerLabel
             // 
@@ -92,6 +107,7 @@
             this.employeePicker.Name = "employeePicker";
             this.employeePicker.Size = new System.Drawing.Size(128, 56);
             this.employeePicker.TabIndex = 10;
+            this.employeePicker.SelectedIndexChanged += new System.EventHandler(this.employeePicker_SelectedIndexChanged);
             // 
             // notesBoxLabel
             // 
@@ -116,13 +132,14 @@
             this.purchaseDatePicker.CalendarForeColor = System.Drawing.Color.Black;
             this.purchaseDatePicker.CalendarTitleForeColor = System.Drawing.Color.Black;
             this.purchaseDatePicker.CustomFormat = "dd/MM/yyyy";
+            this.purchaseDatePicker.Enabled = false;
             this.purchaseDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.purchaseDatePicker.Location = new System.Drawing.Point(215, 181);
             this.purchaseDatePicker.Margin = new System.Windows.Forms.Padding(2);
             this.purchaseDatePicker.Name = "purchaseDatePicker";
             this.purchaseDatePicker.Size = new System.Drawing.Size(128, 20);
             this.purchaseDatePicker.TabIndex = 7;
-            this.purchaseDatePicker.Value = new System.DateTime(2026, 10, 20, 0, 0, 0, 0);
+            this.purchaseDatePicker.Value = new System.DateTime(2026, 10, 22, 0, 0, 0, 0);
             this.purchaseDatePicker.ValueChanged += new System.EventHandler(this.purchaseDatePicker_ValueChanged);
             // 
             // purchaseDateLabel
@@ -156,6 +173,7 @@
             // 
             // addAssetButton
             // 
+            this.addAssetButton.Enabled = false;
             this.addAssetButton.Location = new System.Drawing.Point(251, 296);
             this.addAssetButton.Margin = new System.Windows.Forms.Padding(2);
             this.addAssetButton.Name = "addAssetButton";
@@ -165,16 +183,34 @@
             this.addAssetButton.UseVisualStyleBackColor = true;
             this.addAssetButton.Click += new System.EventHandler(this.addAssetButton_Click);
             // 
-            // tabPage2
+            // displayAssets
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(554, 360);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.displayAssets.Controls.Add(this.assetTable);
+            this.displayAssets.Location = new System.Drawing.Point(4, 22);
+            this.displayAssets.Margin = new System.Windows.Forms.Padding(2);
+            this.displayAssets.Name = "displayAssets";
+            this.displayAssets.Padding = new System.Windows.Forms.Padding(2);
+            this.displayAssets.Size = new System.Drawing.Size(554, 360);
+            this.displayAssets.TabIndex = 1;
+            this.displayAssets.Text = "Display Assets";
+            this.displayAssets.UseVisualStyleBackColor = true;
+            this.displayAssets.Click += new System.EventHandler(this.displayAssets_Click);
+            // 
+            // assetTable
+            // 
+            this.assetTable.AutoScroll = true;
+            this.assetTable.ColumnCount = 5;
+            this.assetTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.assetTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.assetTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.assetTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.assetTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.assetTable.Location = new System.Drawing.Point(2, 0);
+            this.assetTable.Name = "assetTable";
+            this.assetTable.RowCount = 1;
+            this.assetTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.assetTable.Size = new System.Drawing.Size(549, 357);
+            this.assetTable.TabIndex = 1;
             // 
             // AssetsPage
             // 
@@ -184,10 +220,11 @@
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AssetsPage";
-            this.Text = "Form1";
+            this.Text = "Manage Assets";
             this.tabControl1.ResumeLayout(false);
             this.AddAsset.ResumeLayout(false);
             this.AddAsset.PerformLayout();
+            this.displayAssets.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -196,7 +233,6 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage AddAsset;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label nameOfItemLabel;
         private System.Windows.Forms.TextBox assetNameInput;
         private System.Windows.Forms.Button addAssetButton;
@@ -206,5 +242,8 @@
         private System.Windows.Forms.Label notesBoxLabel;
         private System.Windows.Forms.ListBox employeePicker;
         private System.Windows.Forms.Label employeePickerLabel;
+        private System.Windows.Forms.TabPage displayAssets;
+        private System.Windows.Forms.TableLayoutPanel assetTable;
+        private System.Windows.Forms.CheckBox dateCheckbox;
     }
 }

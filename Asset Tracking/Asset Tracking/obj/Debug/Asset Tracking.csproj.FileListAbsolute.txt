@@ -17,3 +17,4 @@ C:\Users\rsiev\Documents\GitHub\CMP307\Asset Tracking\Asset Tracking\bin\Debug\S
 C:\Users\rsiev\Documents\GitHub\CMP307\Asset Tracking\Asset Tracking\obj\Debug\Asset Tracking.exe.config
 C:\Users\rsiev\Documents\GitHub\CMP307\Asset Tracking\Asset Tracking\obj\Debug\Asset_Tracking.MainPage.resources
 C:\Users\rsiev\Documents\GitHub\CMP307\Asset Tracking\Asset Tracking\obj\Debug\Asset_Tracking.AssetsPage.resources
+C:\Users\rsiev\Documents\GitHub\CMP307\Asset Tracking\Asset Tracking\obj\Debug\Asset_Tracking.EmployeePage.resources

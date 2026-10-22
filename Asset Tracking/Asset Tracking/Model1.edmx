@@ -10,7 +10,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="purchaseDate" Type="date" />
           <Property Name="notes" Type="varchar" MaxLength="255" />
           <Property Name="eid" Type="int" Nullable="false" />
@@ -75,7 +75,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="purchaseDate" Type="DateTime" Precision="0" />
           <Property Name="notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="eid" Type="Int32" Nullable="false" />

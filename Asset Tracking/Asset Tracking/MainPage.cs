@@ -5,9 +5,13 @@ namespace Asset_Tracking
 {
     public partial class MainPage : Form
     {
-        public MainPage()
+        private readonly dbEntities db;
+
+        public MainPage(dbEntities db)
         {
             InitializeComponent();
+
+            this.db = db;
             FormClosed += MainPage_FormClosed;
         }
 
@@ -18,10 +22,25 @@ namespace Asset_Tracking
 
         private void AssetsButton_Click(object sender, EventArgs e)
         {
-            var assetsForm = new AssetsPage();
+            var assetsForm = new AssetsPage(db);
 
+            assetsForm.FormClosed += ChildForm_FormClosed;
             assetsForm.Show();
             Hide();
+        }
+
+        private void employeeButton_Click(object sender, EventArgs e)
+        {
+            var employeeForm = new EmployeePage(db);
+
+            employeeForm.FormClosed += ChildForm_FormClosed;
+            employeeForm.Show();
+            Hide();
+        }
+
+        private void ChildForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Show();
         }
     }
 }
