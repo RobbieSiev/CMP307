@@ -1,16 +1,111 @@
 # Git commit history
 
-d1abd2e Change git log format to include raw date
-068ea11 Update commit history [skip ci]
-7e07f08 Add workflow to generate and commit commit history
-b0f40c3 Update README.md with build status badge
-e0fabb4 folder in folder :(
-d71c1af Added "Show all Assets" tab
-0b91592 Added a yaml workflow thing
-5b88277 Added employee picker to add asset.
-c86969b Merge branch 'main' of https://github.com/RobbieSiev/CMP307
-83972df Add Asset Stuff functional. Needs employee id input
-63fc2b1 Add link to custom date format documentation
-5dc70aa ENTITY FRAMEWORK SUCKS - fixed it maybe hopefully
-aa409c8 Started building login form
-d880db2 Initial commit
+commit 2e33efbb091cd83902b12f97d48d473f1310066d
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792699513 +0100
+
+    Fix git log command in commits.yml
+
+commit 557a0271cd63323abda7568ad4b8d001dd11b1cd
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   1792699339 +0000
+
+    Update commit history [skip ci]
+
+commit d1abd2e56d355d44f0c5b7f033865a02f3b230f8
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792699332 +0100
+
+    Change git log format to include raw date
+
+commit 068ea1173c18ed7104a71d10274b2738f1ee7dc2
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   1792699013 +0000
+
+    Update commit history [skip ci]
+
+commit 7e07f08a714185aee55a50ebd7f100cb07269eb9
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792699006 +0100
+
+    Add workflow to generate and commit commit history
+
+commit b0f40c3812ee5b23bacb5d8c47cc61fae2feb2f1
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792698852 +0100
+
+    Update README.md with build status badge
+    
+    Add build status badge for .NET Core Desktop workflow
+
+commit e0fabb4ea794c61481659f0812a04d769bd5acde
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792694773 +0100
+
+    folder in folder :(
+
+commit d71c1af72122edd6d4b1abae69a0945a8cd7cfa2
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792694049 +0100
+
+    Added "Show all Assets" tab
+    
+    -Displays a table of all asset details
+    
+    DB connection gets passed between the forms so connection doesn't get open/closed/opened/closed or worse crashes as opened multiple times at the same time.
+    
+    - Reloading e.f. model broke everything again. Fix later
+    Added sligtly more helpful error message to the db adding thing. Done because of max-lengths mismatching between e.f. and database.
+
+commit 0b91592472a8d4aaee2f535fe8099b56d0af62bb
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792664041 +0100
+
+    Added a yaml workflow thing
+
+commit 5b882775875af25531ae097b1ec893d7910fba7d
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792663763 +0100
+
+    Added employee picker to add asset.
+
+commit c86969b6f66ef50d1008ac61c77a25d7a447352f
+Merge: 83972df 63fc2b1
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792523942 +0100
+
+    Merge branch 'main' of https://github.com/RobbieSiev/CMP307
+
+commit 83972df76fb8e1399df5dcf0a23efe1ed1a7bbb2
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792523917 +0100
+
+    Add Asset Stuff functional. Needs employee id input
+    
+    - Fixed Asset Table so it autoincrements id.
+    - Error messages are now slightly useful.
+    - Move DB Connection stuff to seperate file for reusability.
+
+commit 63fc2b1a3aad4c024ffb2fbb67c3cbedea4e4c5e
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792519923 +0000
+
+    Add link to custom date format documentation
+
+commit 5dc70aa3544a5871a72c5b9251b857f3bb0fead8
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792517719 +0100
+
+    ENTITY FRAMEWORK SUCKS - fixed it maybe hopefully
+
+commit aa409c859f3a6c449a5c8234fb3495af96448167
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792491767 +0100
+
+    Started building login form
+
+commit d880db2647be88d0843b545e1c5d9b76b013ace6
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1792490633 +0100
+
+    Initial commit
