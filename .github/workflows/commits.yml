@@ -23,7 +23,7 @@ jobs:
           {
             echo "# Git commit history"
             echo
-            git log --oneline --date=raw
+            git log --date=raw 
           } > commit-history.txt
 
       - name: Commit generated history
