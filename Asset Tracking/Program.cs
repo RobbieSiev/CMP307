@@ -1,17 +1,43 @@
+﻿using System;
+using System.CodeDom;
+using System.Linq;
+using System.Windows.Forms;
+
 namespace Asset_Tracking
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            dbEntities db = null;
+
+            try
+            {
+                db = DatabaseConnection.CreateContext();
+
+                if (!db.assets.Any())
+                {
+                    // Database is probably inaccessible
+                    throw new Exception("Database is empty or inaccessible. Auth with firewall.");
+                }
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(
+                    "Cannot access the database.\r\n\r\n" + exception.Message,
+                    "Database Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            Application.Run(new MainPage(db));
+                db?.Dispose();
+                DatabaseConnection.CreateContext().Dispose();
         }
     }
 }
