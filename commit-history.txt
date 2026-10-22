@@ -1,5 +1,7 @@
 # Git commit history
 
+d1abd2e Change git log format to include raw date
+068ea11 Update commit history [skip ci]
 7e07f08 Add workflow to generate and commit commit history
 b0f40c3 Update README.md with build status badge
 e0fabb4 folder in folder :(
