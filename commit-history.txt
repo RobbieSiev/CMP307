@@ -1,0 +1,14 @@
+# Git commit history
+
+7e07f08 Add workflow to generate and commit commit history
+b0f40c3 Update README.md with build status badge
+e0fabb4 folder in folder :(
+d71c1af Added "Show all Assets" tab
+0b91592 Added a yaml workflow thing
+5b88277 Added employee picker to add asset.
+c86969b Merge branch 'main' of https://github.com/RobbieSiev/CMP307
+83972df Add Asset Stuff functional. Needs employee id input
+63fc2b1 Add link to custom date format documentation
+5dc70aa ENTITY FRAMEWORK SUCKS - fixed it maybe hopefully
+aa409c8 Started building login form
+d880db2 Initial commit
