@@ -12,8 +12,9 @@ namespace Asset_Tracking
 
         public AssetsPage(dbEntities db)
         {
+            // Form opened
             InitializeComponent();
-
+            // use existing db
             this.db = db;
             // DB Max lengths
             assetNameInput.MaxLength = 32;
@@ -25,6 +26,7 @@ namespace Asset_Tracking
 
         private void addAssetButton_Click(object sender, EventArgs e)
         {
+            // Check if all fields are valid
             if (string.IsNullOrWhiteSpace(assetNameInput.Text))
             {
                 MessageBox.Show("Please fill in all required fields.");
@@ -39,6 +41,7 @@ namespace Asset_Tracking
 
             if (string.IsNullOrWhiteSpace(notesBox.Text))
             {
+                // check if user ok with empty message box
                 DialogResult result = MessageBox.Show(
                     "Are you sure you want to add this asset without any notes?",
                     "Confirm",
@@ -55,14 +58,13 @@ namespace Asset_Tracking
             {
                 addAssetButton.Enabled = false;
                 // gets eid from employeePicker in not nice way
-                // (gets before \t)
+                // (gets int before \t)
                 int eid = int.Parse(employeePicker.SelectedItem.ToString().Split('\t')[0]);
-                // checks if purchase date is used and if valid
+                // checks if purchase date is used and if its valid
                 DateTime? purchaseDate = dateCheckbox.Checked ? purchaseDatePicker.Value : (DateTime?)null;
                 var newAsset = new asset
                 {
                     name = assetNameInput.Text.Trim(),
-                    // set the purchase date to be null if checkbox not ticked
                     purchaseDate = purchaseDate,
                     notes = notesBox.Text.Trim(),
                     eid = eid
@@ -76,10 +78,11 @@ namespace Asset_Tracking
                 assetNameInput.Clear();
                 purchaseDatePicker.Value = DateTime.Now;
                 notesBox.Clear();
-                addAssetButton.Enabled=false;
+                addAssetButton.Enabled = false;
             }
             catch (DbUpdateException dbException)
             {
+                // something wrong with db
                 MessageBox.Show(
                     GetFullExceptionMessage(dbException),
                     "Database Error",
@@ -106,6 +109,7 @@ namespace Asset_Tracking
             }
             catch (Exception exception)
             {
+                // some other exception
                 MessageBox.Show(
                     GetFullExceptionMessage(exception),
                     "Error Adding Asset",
@@ -114,6 +118,8 @@ namespace Asset_Tracking
             }
             finally
             {
+                // enable asset button if data isn't clear and still valid
+                // disable asset button if data was saved and form now cleared
                 enableAddAssetButton();
             }
         }
@@ -122,6 +128,8 @@ namespace Asset_Tracking
 
         private void addAssetTab_Click(object sender, EventArgs e)
         {
+            // change tab
+            // load all employees to employee picker
             employeePicker.Items.Clear();
 
             var employees = db.employees
@@ -138,6 +146,7 @@ namespace Asset_Tracking
 
         private static string GetFullExceptionMessage(Exception exception)
         {
+            // show full error messages and not just it's title.
             var messages = new System.Collections.Generic.List<string>();
 
             while (exception != null)
@@ -153,6 +162,8 @@ namespace Asset_Tracking
 
         private void displayAssets_Click(object sender, EventArgs e)
         {
+            // DISPLAY ALL ASEETS IN TABLE
+            // clear the table
             //displayListAssets.Items.Clear();
             assetTable.Controls.Clear();
 
@@ -193,53 +204,76 @@ namespace Asset_Tracking
                 Margin = new Padding(5)
             });
 
-            var assets = db.assets
-                .ToList();
-
-            //displayListAssets.Items.Add("ID\tName\tEmployee\t\tPurchase Date\tNotes");
-            foreach (var asset in assets)
+            try
             {
-                // display each asset in the table layout panel
-                assetTable.Controls.Add(new Label
-                {
-                    Text = asset.id.ToString(),
-                    AutoSize = true,
-                    Margin = new Padding(5)
-                });
-                assetTable.Controls.Add(new Label
-                {
-                    Text = asset.name.Trim(),
-                    AutoSize = true,
-                    Margin = new Padding(5)
-                });
-                assetTable.Controls.Add(new Label
-                {
-                    Text = asset.employee.fname.Trim() + " " + asset.employee.lname.Trim(),
-                    AutoSize = true,
-                    Margin = new Padding(5)
-                });
-                assetTable.Controls.Add(new Label
-                {
-                    Text = asset.purchaseDate?.ToString("dd/MM/yyyy") ?? "N/A",
-                    AutoSize = true,
-                    Margin = new Padding(5)
-                });
-                assetTable.Controls.Add(new Label
-                {
-                    Text = asset.notes.Trim(),
-                    AutoSize = true,
-                    Margin = new Padding(5)
-                });
+                var assets = db.assets
+                    .ToList();
 
-                // old thing 
-                //displayListAssets.Items.Add(
-                //    asset.id + "\t" +
-                //    asset.name.Trim() + "\t" +
-                //    asset.employee.fname.Trim() + " " +
-                //    asset.employee.lname.Trim() + "\t" +
-                //    asset.purchaseDate.ToString() +"\t"+
-                //    asset.notes.Trim()
-                //);
+                //displayListAssets.Items.Add("ID\tName\tEmployee\t\tPurchase Date\tNotes");
+                foreach (var asset in assets)
+                {
+                    // display each asset in the table layout panel
+                    assetTable.Controls.Add(new Label
+                    {
+                        Text = asset.id.ToString(),
+                        AutoSize = true,
+                        Margin = new Padding(5)
+                    });
+                    assetTable.Controls.Add(new Label
+                    {
+                        Text = asset.name.Trim(),
+                        AutoSize = true,
+                        Margin = new Padding(5)
+                    });
+                    assetTable.Controls.Add(new Label
+                    {
+                        // join fname and sname
+                        Text = asset.employee.fname.Trim() + " " + asset.employee.lname.Trim(),
+                        AutoSize = true,
+                        Margin = new Padding(5)
+                    });
+                    assetTable.Controls.Add(new Label
+                    {
+                        // purchase date or N/A if not set
+                        Text = asset.purchaseDate?.ToString("dd/MM/yyyy") ?? "N/A",
+                        AutoSize = true,
+                        Margin = new Padding(5)
+                    });
+                    assetTable.Controls.Add(new Label
+                    {
+                        Text = asset.notes.Trim(),
+                        AutoSize = true,
+                        Margin = new Padding(5)
+                    });
+
+                    // old thing 
+                    //displayListAssets.Items.Add(
+                    //    asset.id + "\t" +
+                    //    asset.name.Trim() + "\t" +
+                    //    asset.employee.fname.Trim() + " " +
+                    //    asset.employee.lname.Trim() + "\t" +
+                    //    asset.purchaseDate.ToString() +"\t"+
+                    //    asset.notes.Trim()
+                    //);
+                }
+            }
+            catch (DbUpdateException dbException)
+            {
+                // something wrong with db
+                MessageBox.Show(
+                    GetFullExceptionMessage(dbException),
+                    "Database Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception exception)
+            {
+                // some other exception
+                MessageBox.Show(
+                    GetFullExceptionMessage(exception),
+                    "Error Adding Asset",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
         }
@@ -247,7 +281,7 @@ namespace Asset_Tracking
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // select the tab
-
+            // change page
             if (tabControl1.SelectedIndex == 0)
             {
                 addAssetTab_Click(null, null);
@@ -286,6 +320,7 @@ namespace Asset_Tracking
 
         private void dateCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            // enable/disable date picker on add asset page if checkbox ticked
             if (dateCheckbox.Checked)
             {
                 purchaseDatePicker.Enabled = true;

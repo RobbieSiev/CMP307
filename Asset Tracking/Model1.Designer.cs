@@ -55,11 +55,6 @@ namespace Asset_Tracking
         /// <summary>
         /// Initialize a new dbEntities object.
         /// </summary>
-        public dbEntities(EntityConnection connection) : base(connection, "dbEntities")
-        {
-            this.ContextOptions.LazyLoadingEnabled = true;
-            OnContextCreated();
-        }
     
         #endregion
     

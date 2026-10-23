@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,6 +16,7 @@ namespace Asset_Tracking
 
             try
             {
+                // check if db is accessable
                 db = DatabaseConnection.CreateContext();
 
                 if (!db.assets.Any())
@@ -29,15 +29,18 @@ namespace Asset_Tracking
             catch (Exception exception)
             {
                 MessageBox.Show(
-                    "Cannot access the database.\r\n\r\n" + exception.Message,
+                    "Auth with firewall.\r\n\r\nCannot access the database.\r\n\r\n" + exception.Message,
                     "Database Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
+            // show main form
             Application.Run(new MainPage(db));
-                db?.Dispose();
-                DatabaseConnection.CreateContext().Dispose();
+
+            // kill db when program closed
+            db?.Dispose();
+            DatabaseConnection.CreateContext().Dispose();
         }
     }
 }
