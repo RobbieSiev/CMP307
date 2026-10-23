@@ -1,5 +1,17 @@
 # Git commit history
 
+commit e37c142e771f94def8a644c94e3a410052947541
+Author: MCSieve5 <2401087@abertay.ac.uk>
+Date:   1792747454 +0100
+
+    FIxed EF again
+
+commit 47af59ec52f7831fd8f16058dbf795dadf677064
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   1792699521 +0000
+
+    Update commit history [skip ci]
+
 commit 2e33efbb091cd83902b12f97d48d473f1310066d
 Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
 Date:   1792699513 +0100
