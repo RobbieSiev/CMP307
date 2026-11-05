@@ -1,5 +1,18 @@
 # Git commit history
 
+commit 2cc96630c4485dc22c395046be8d966c671c8568
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1793880612 +0000
+
+    Now stores IP and Hardware info in db
+    Fixed Entity Framework again as primary key was not set to auto_increment
+
+commit 5a95003925f0444bc966889951866ff615e3442f
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   1792747471 +0000
+
+    Update commit history [skip ci]
+
 commit e37c142e771f94def8a644c94e3a410052947541
 Author: MCSieve5 <2401087@abertay.ac.uk>
 Date:   1792747454 +0100
