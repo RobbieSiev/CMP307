@@ -33,7 +33,7 @@ namespace Asset_Tracking
     public partial class dbEntities : ObjectContext
     {
         #region Constructors
-
+    
         /// <summary>
         /// Initializes a new dbEntities object using the connection string found in the 'dbEntities' section of the application configuration file.
         /// </summary>
@@ -42,7 +42,7 @@ namespace Asset_Tracking
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
-
+    
         /// <summary>
         /// Initialize a new dbEntities object.
         /// </summary>
@@ -55,6 +55,11 @@ namespace Asset_Tracking
         /// <summary>
         /// Initialize a new dbEntities object.
         /// </summary>
+        public dbEntities(EntityConnection connection) : base(connection, "dbEntities")
+        {
+            this.ContextOptions.LazyLoadingEnabled = true;
+            OnContextCreated();
+        }
     
         #endregion
     
@@ -548,19 +553,11 @@ namespace Asset_Tracking
         /// Create a new hardware object.
         /// </summary>
         /// <param name="systemName">Initial value of the systemName property.</param>
-        /// <param name="model">Initial value of the model property.</param>
-        /// <param name="manufacturer">Initial value of the manufacturer property.</param>
-        /// <param name="type">Initial value of the type property.</param>
-        /// <param name="ip">Initial value of the ip property.</param>
         /// <param name="deviceId">Initial value of the deviceId property.</param>
-        public static hardware Createhardware(global::System.String systemName, global::System.String model, global::System.String manufacturer, global::System.String type, global::System.String ip, global::System.Int32 deviceId)
+        public static hardware Createhardware(global::System.String systemName, global::System.Int32 deviceId)
         {
             hardware hardware = new hardware();
             hardware.systemName = systemName;
-            hardware.model = model;
-            hardware.manufacturer = manufacturer;
-            hardware.type = type;
-            hardware.ip = ip;
             hardware.deviceId = deviceId;
             return hardware;
         }
@@ -596,7 +593,7 @@ namespace Asset_Tracking
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String model
         {
@@ -608,7 +605,7 @@ namespace Asset_Tracking
             {
                 OnmodelChanging(value);
                 ReportPropertyChanging("model");
-                _model = StructuralObject.SetValidValue(value, false, "model");
+                _model = StructuralObject.SetValidValue(value, true, "model");
                 ReportPropertyChanged("model");
                 OnmodelChanged();
             }
@@ -620,7 +617,7 @@ namespace Asset_Tracking
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String manufacturer
         {
@@ -632,7 +629,7 @@ namespace Asset_Tracking
             {
                 OnmanufacturerChanging(value);
                 ReportPropertyChanging("manufacturer");
-                _manufacturer = StructuralObject.SetValidValue(value, false, "manufacturer");
+                _manufacturer = StructuralObject.SetValidValue(value, true, "manufacturer");
                 ReportPropertyChanged("manufacturer");
                 OnmanufacturerChanged();
             }
@@ -644,7 +641,7 @@ namespace Asset_Tracking
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String type
         {
@@ -656,7 +653,7 @@ namespace Asset_Tracking
             {
                 OntypeChanging(value);
                 ReportPropertyChanging("type");
-                _type = StructuralObject.SetValidValue(value, false, "type");
+                _type = StructuralObject.SetValidValue(value, true, "type");
                 ReportPropertyChanged("type");
                 OntypeChanged();
             }
@@ -668,7 +665,7 @@ namespace Asset_Tracking
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String ip
         {
@@ -680,7 +677,7 @@ namespace Asset_Tracking
             {
                 OnipChanging(value);
                 ReportPropertyChanging("ip");
-                _ip = StructuralObject.SetValidValue(value, false, "ip");
+                _ip = StructuralObject.SetValidValue(value, true, "ip");
                 ReportPropertyChanged("ip");
                 OnipChanged();
             }

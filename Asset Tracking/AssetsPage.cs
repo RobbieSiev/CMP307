@@ -155,9 +155,11 @@ namespace Asset_Tracking
                 exception = exception.InnerException;
             }
 
-            return string.Join(
+            string error = string.Join(
                 Environment.NewLine + Environment.NewLine,
                 messages);
+            Console.WriteLine(error);
+            return error;
         }
 
         private void displayAssets_Click(object sender, EventArgs e)

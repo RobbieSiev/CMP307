@@ -30,11 +30,11 @@
             <PropertyRef Name="deviceId" />
           </Key>
           <Property Name="systemName" Type="nchar" MaxLength="64" Nullable="false" />
-          <Property Name="model" Type="nchar" MaxLength="64" Nullable="false" />
-          <Property Name="manufacturer" Type="nchar" MaxLength="64" Nullable="false" />
-          <Property Name="type" Type="nchar" MaxLength="32" Nullable="false" />
-          <Property Name="ip" Type="nchar" MaxLength="16" Nullable="false" />
-          <Property Name="deviceId" Type="int" Nullable="false" />
+          <Property Name="model" Type="nchar" MaxLength="64" />
+          <Property Name="manufacturer" Type="nchar" MaxLength="64" />
+          <Property Name="type" Type="nchar" MaxLength="32" />
+          <Property Name="ip" Type="nchar" MaxLength="16" />
+          <Property Name="deviceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <Association Name="FK_asset_employee">
           <End Role="employee" Type="Self.employee" Multiplicity="1" />
@@ -97,10 +97,10 @@
             <PropertyRef Name="deviceId" />
           </Key>
           <Property Name="systemName" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
-          <Property Name="model" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
-          <Property Name="manufacturer" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
-          <Property Name="type" Type="String" Nullable="false" MaxLength="32" FixedLength="true" Unicode="true" />
-          <Property Name="ip" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="model" Type="String" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="manufacturer" Type="String" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+          <Property Name="ip" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
           <Property Name="deviceId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_asset_employee">
