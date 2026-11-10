@@ -1,5 +1,17 @@
 # Git commit history
 
+commit f693225a8a805943f01cac3d535e11ce809b7aa2
+Author: Robbie Sievwright <2401087@abertay.ac.uk>
+Date:   1794297180 +0000
+
+    Added more comments
+
+commit 2a1ee79658178d038ed1ac81afd669b4bc3fb388
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   1793880632 +0000
+
+    Update commit history [skip ci]
+
 commit 2cc96630c4485dc22c395046be8d966c671c8568
 Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
 Date:   1793880612 +0000
