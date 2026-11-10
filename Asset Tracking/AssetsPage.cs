@@ -19,7 +19,7 @@ namespace Asset_Tracking
             // set limits for text boxes to match database limits
             assetNameInput.MaxLength = 32;
             notesBox.MaxLength = 255;
-
+            purchaseDatePicker.Value=DateTime.Now; 
             // load add page by default
             addAssetTab_Click(null, null);
         }
@@ -63,14 +63,14 @@ namespace Asset_Tracking
                 int eid = int.Parse(employeePicker.SelectedItem.ToString().Split('\t')[0]);
                 // checks if purchase date is used and if its valid
                 DateTime? purchaseDate = dateCheckbox.Checked ? purchaseDatePicker.Value : (DateTime?)null;
-                var newAsset = new asset
+                asset newAsset = new asset
                 {
                     name = assetNameInput.Text.Trim(),
                     purchaseDate = purchaseDate,
                     notes = notesBox.Text.Trim(),
                     eid = eid
                 };
-
+            
                 db.assets.Add(newAsset);
                 db.SaveChanges();
 
