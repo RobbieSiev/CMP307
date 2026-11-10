@@ -28,6 +28,9 @@ namespace Asset_Tracking
             }
             catch (Exception exception)
             {
+                // database is definitely inaccessible, show error message and exit
+                MessageBox.Show( "Did you auth with firewall?","Firewall?", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 MessageBox.Show(
                     GetFullExceptionMessage(exception),
                     "Database Error",
@@ -40,11 +43,11 @@ namespace Asset_Tracking
 
             // kill db when program closed
             db?.Dispose();
-            DatabaseConnection.CreateContext().Dispose();
         }
 
         private static string GetFullExceptionMessage(Exception exception)
         {
+            // Get all exception messages, including inner exceptions
             var messages = new System.Collections.Generic.List<string>();
 
             while (exception != null)

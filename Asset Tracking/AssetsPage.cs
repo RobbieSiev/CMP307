@@ -16,7 +16,7 @@ namespace Asset_Tracking
             InitializeComponent();
             // use existing db
             this.db = db;
-            // DB Max lengths
+            // set limits for text boxes to match database limits
             assetNameInput.MaxLength = 32;
             notesBox.MaxLength = 255;
 
@@ -35,6 +35,7 @@ namespace Asset_Tracking
 
             if (dateCheckbox.Checked && purchaseDatePicker.Value > DateTime.Now)
             {
+                // if checkbox ticked and date is in the future, show error
                 MessageBox.Show("Purchase date cannot be in the future.");
                 return;
             }
@@ -247,16 +248,6 @@ namespace Asset_Tracking
                         AutoSize = true,
                         Margin = new Padding(5)
                     });
-
-                    // old thing 
-                    //displayListAssets.Items.Add(
-                    //    asset.id + "\t" +
-                    //    asset.name.Trim() + "\t" +
-                    //    asset.employee.fname.Trim() + " " +
-                    //    asset.employee.lname.Trim() + "\t" +
-                    //    asset.purchaseDate.ToString() +"\t"+
-                    //    asset.notes.Trim()
-                    //);
                 }
             }
             catch (DbUpdateException dbException)

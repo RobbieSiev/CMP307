@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;     //This namespace is used to work with Registry editor.
-using System;
+﻿using System;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -8,13 +7,8 @@ using System.Linq;
 using System.Management;   //This namespace is used to work with WMI classes. For using this namespace add reference of System.Management.dll .
 using System.Net;
 using System.Net.Sockets;
+using System.Net.NetworkInformation;
 using System.Windows.Forms;
-//using System.Text.RegularExpressions;
-
-//using System.Collections;
-//using System.ComponentModel;
-//using System.Drawing;
-//using System.Reflection;
 
 namespace Asset_Tracking
 {
@@ -30,21 +24,8 @@ namespace Asset_Tracking
             FormClosed += MainPage_FormClosed;
 
 
-            // get system info
-            //Type t = typeof(System.Windows.Forms.SystemInformation);
-
-
-
-            // get Ip
+            // get Ip and system info and save to db
             var ip = GetLocalIPAddress();
-            //var properties = t.GetProperties();
-            //Console.WriteLine("System Information:");
-            //foreach (var property in properties)
-            //{
-            //       var value = property.GetValue(null);
-            //        Console.WriteLine($"{property.Name}: {value}");
-                
-            //}
             Console.WriteLine($"IP Address: {ip}");
             Console.WriteLine($"Model: {GetSystemModel()}");
             Console.WriteLine($"Manufacturer: {GetSystemManufacturer()}");
@@ -97,6 +78,8 @@ namespace Asset_Tracking
         }
         public static string GetSystemManufacturer()
         {
+            // get system manufacturer using WMI (Windows Management Instrumentation)
+            // https://learn.microsoft.com/en-us/dotnet/api/system.management.managementobjectsearcher.get?view=net-11.0-pp#system-management-managementobjectsearcher-get
             using (var searcher = new ManagementObjectSearcher("SELECT Manufacturer FROM Win32_ComputerSystem"))
             {
                 foreach (var obj in searcher.Get())
@@ -108,6 +91,7 @@ namespace Asset_Tracking
         }
         public static string GetSystemModel()
         {
+            // get system model
             using (var searcher = new ManagementObjectSearcher("SELECT Model FROM Win32_ComputerSystem"))
             {
                 foreach (var obj in searcher.Get())
@@ -119,6 +103,7 @@ namespace Asset_Tracking
         }
         public static string GetSystemType()
         {
+            // get system type
             using (var searcher = new ManagementObjectSearcher("SELECT SystemType FROM Win32_ComputerSystem"))
             {
                 foreach (var obj in searcher.Get())
@@ -130,15 +115,46 @@ namespace Asset_Tracking
         }
         public static string GetLocalIPAddress()
         {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
+            // get all network interfaces and filter for active physical adapters with an IPv4 address
+            // i.e actual ip
+            // https://learn.microsoft.com/en-us/dotnet/api/system.net.networkinformation.networkinterface?view=net-10.0
+            // and copilot unfortunately
+
+            // get all ip's
+            var preferredInterfaces = NetworkInterface.GetAllNetworkInterfaces()
+                // where an actual adapter and not bluetooth or loopback?
+                .Where(networkInterface =>
+                    networkInterface.OperationalStatus == OperationalStatus.Up &&
+                    (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+                     networkInterface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211))
+                // get the property of the adapter
+                .Select(networkInterface => new
                 {
-                    return ip.ToString();
-                }
+                    Interface = networkInterface,
+                    Properties = networkInterface.GetIPProperties()
+                })
+                // check if the adapter is connected to a network 
+                // by checking if it has a gateway thing
+                .Where(networkInterface =>
+                    networkInterface.Properties.GatewayAddresses.Any(gateway =>
+                        gateway.Address.AddressFamily == AddressFamily.InterNetwork))
+                // get the unicast addresses of the adapter idk what that is
+                .SelectMany(networkInterface => networkInterface.Properties.UnicastAddresses)
+                // make sure not localhost or link-local
+                .Where(address =>
+                    address.Address.AddressFamily == AddressFamily.InterNetwork &&
+                    !IPAddress.IsLoopback(address.Address) &&
+                    !address.Address.ToString().StartsWith("169.254."))
+                // select the first one which is probably right
+                .Select(address => address.Address.ToString())
+                .FirstOrDefault();
+
+            if (preferredInterfaces != null)
+            {
+                return preferredInterfaces;
             }
-            throw new Exception("No network adapters with an IPv4 address in the system!");
+
+            throw new Exception("No active physical network adapter with an IPv4 address was found.");
         }
 
         private void MainPage_FormClosed(object sender, FormClosedEventArgs e)
@@ -185,6 +201,7 @@ namespace Asset_Tracking
             string error = string.Join(
                 Environment.NewLine + Environment.NewLine,
                 messages);
+
             Console.WriteLine(error);
             return error;
         }
