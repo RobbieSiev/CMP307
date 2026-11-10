@@ -1,5 +1,24 @@
 # Git commit history
 
+commit 16d739734c025243803b8e23f8a690571d01ca0e
+Merge: 96cd874 8143ab3
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1794316383 +0000
+
+    Merge branch 'main' of https://github.com/RobbieSiev/CMP307
+
+commit 96cd874da5fcbe00c6d9f947945e9ee947dc31df
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   1794297190 +0000
+
+    Update commit history [skip ci]
+
+commit 8143ab3dc97401c539994233052c4c54a2ba0222
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   1794297190 +0000
+
+    Update commit history [skip ci]
+
 commit f693225a8a805943f01cac3d535e11ce809b7aa2
 Author: Robbie Sievwright <2401087@abertay.ac.uk>
 Date:   1794297180 +0000
