@@ -1,5 +1,24 @@
 # Git commit history
 
+commit 6df0977fc313f17dfc9268960fe1d7cc37c6d517
+Merge: 427a5c8 378f952
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1794994437 +0000
+
+    Merge branch 'main' of https://github.com/RobbieSiev/CMP307
+
+commit 427a5c86580f356750eaff622cd6d9ce8f3ac2a7
+Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
+Date:   1794994433 +0000
+
+    started making login page
+
+commit 378f9520caab2fb3a6365e1bb709a704d22fc7c2
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   1794316395 +0000
+
+    Update commit history [skip ci]
+
 commit 16d739734c025243803b8e23f8a690571d01ca0e
 Merge: 96cd874 8143ab3
 Author: Robbie Sievwright Uni <2401087@abertay.ac.uk>
