@@ -9,6 +9,7 @@ namespace Asset_Tracking
     public partial class AssetsPage : Form
     {
         private readonly dbEntities db;
+        private readonly employee userLoggedIn;
 
         public AssetsPage(dbEntities db)
         {

@@ -25,6 +25,7 @@ namespace Asset_Tracking
         public string email { get; set; }
         public int eid { get; set; }
         public string dept { get; set; }
+        public string passwordHash { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<asset> assets { get; set; }

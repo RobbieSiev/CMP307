@@ -371,7 +371,8 @@ namespace Asset_Tracking
         /// <param name="email">Initial value of the email property.</param>
         /// <param name="eid">Initial value of the eid property.</param>
         /// <param name="dept">Initial value of the dept property.</param>
-        public static employee Createemployee(global::System.String fname, global::System.String lname, global::System.String email, global::System.Int32 eid, global::System.String dept)
+        /// <param name="passwordHash">Initial value of the passwordHash property.</param>
+        public static employee Createemployee(global::System.String fname, global::System.String lname, global::System.String email, global::System.Int32 eid, global::System.String dept, global::System.String passwordHash)
         {
             employee employee = new employee();
             employee.fname = fname;
@@ -379,6 +380,7 @@ namespace Asset_Tracking
             employee.email = email;
             employee.eid = eid;
             employee.dept = dept;
+            employee.passwordHash = passwordHash;
             return employee;
         }
 
@@ -508,6 +510,30 @@ namespace Asset_Tracking
         private global::System.String _dept;
         partial void OndeptChanging(global::System.String value);
         partial void OndeptChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String passwordHash
+        {
+            get
+            {
+                return _passwordHash;
+            }
+            set
+            {
+                OnpasswordHashChanging(value);
+                ReportPropertyChanging("passwordHash");
+                _passwordHash = StructuralObject.SetValidValue(value, false, "passwordHash");
+                ReportPropertyChanged("passwordHash");
+                OnpasswordHashChanged();
+            }
+        }
+        private global::System.String _passwordHash;
+        partial void OnpasswordHashChanging(global::System.String value);
+        partial void OnpasswordHashChanged();
 
         #endregion
 

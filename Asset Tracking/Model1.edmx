@@ -24,6 +24,7 @@
           <Property Name="lname" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="dept" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="passwordHash" Type="nchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="hardware">
           <Key>
@@ -91,6 +92,7 @@
           <Property Name="eid" Type="Int32" Nullable="false" />
           <Property Name="dept" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="assets" Relationship="dbModel.FK_asset_employee" FromRole="employee" ToRole="asset" />
+          <Property Name="passwordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="hardware">
           <Key>
@@ -135,6 +137,7 @@
           <EntitySetMapping Name="employees">
             <EntityTypeMapping TypeName="dbModel.employee">
               <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
                 <ScalarProperty Name="dept" ColumnName="dept" />
                 <ScalarProperty Name="eid" ColumnName="eid" />
                 <ScalarProperty Name="email" ColumnName="email" />

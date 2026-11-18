@@ -15,8 +15,9 @@ namespace Asset_Tracking
     public partial class MainPage : Form
     {
         private readonly dbEntities db;
+        private readonly employee userLoggedIn;
 
-        public MainPage(dbEntities db)
+        public MainPage(dbEntities db, employee userLoggedIn)
         {
             InitializeComponent();
             // use existing db

@@ -39,8 +39,9 @@ namespace Asset_Tracking
                 //return; // comment out if asset table is actually empty
             }
             // show main form
-            Application.Run(new MainPage(db));
-
+            //Application.Run(new MainPage(db));
+            // show login form
+            Application.Run(new LoginForm(db));
             // kill db when program closed
             db?.Dispose();
         }
