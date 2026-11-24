@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Asset_Tracking
@@ -41,6 +35,11 @@ namespace Asset_Tracking
                 // login failed, show error message
                 MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void PasswordInput_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
